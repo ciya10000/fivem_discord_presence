@@ -1,16 +1,14 @@
 local appid = 'CHANGE ME'
-local asset = 'CHANGE ME'
+local asset = 'logo'
 
-function Presence()
+function SetRP()
     local name = GetPlayerName(PlayerId())
     local id = GetPlayerServerId(PlayerId())
-    local info
+    local info =  " On foot"
     local playerspeed = math.floor((GetEntitySpeed(GetVehiclePedIsIn(GetPlayerPed(-1), false))*3.6)) .. " KM/h"
 
-    if info == nil then info = " On foot" end
-
     if(IsPedInAnyVehicle(GetPlayerPed(-1), false)) then
-        info = "Riding vehicle " .. playerspeed
+        info = "Riding " .. playerspeed
         if playerspeed == "0 KM/h" then info = "In vehicle" end
     end
 
@@ -21,11 +19,11 @@ end
 
 Citizen.CreateThread(function()
     
-    Presence()
+    SetRP()
     
     while true do
         Citizen.Wait(2500)
-        Presence()
+        SetRP()
     end
 
 end)
